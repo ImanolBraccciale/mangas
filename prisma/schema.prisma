@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  ID_USER String @id @default(uuid())
+  name String 
+  email String
+  password String
+  role Role @default(USER)
+  manga Manga[]
+}
+
+model Manga {
+  ID_Manga String @id @default(uuid())  
+  tittle String
+  description String
+  status Status @default(SOON)
+  chapters Chapter[]
+  creator User @relation(fields: [ID_USER],references: [ID_USER])
+  ID_USER String
+  geres Generes[]
+}
+
+model Generes {
+ ID_Generes String @id @default(uuid())
+ name String
+ manga Manga[]
+}
+
+model Chapter {
+  ID_Chapter String @id @default(uuid())  
+  Number Int
+  tittle String?
+  Images Image[]
+  Manga Manga @relation(fields: [ID_Manga], references: [ID_Manga])
+  ID_Manga String
+}
+
+model Image{
+  ID_Image String @id @default(uuid())
+  URL String
+  Chapter Chapter @relation(fields: [ID_Chapter],references: [ID_Chapter])
+  ID_Chapter String @unique
+}
+
+enum Status{
+  ACTIVE
+  ABANDONED
+  HIATUS
+  SOON
+}
+
+
+
+enum Role {
+  USER
+  MEMBER
+  ADMIN
+}
