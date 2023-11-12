@@ -1,48 +1,49 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { postManga } from '../Controllers/Manga/postManga';
+import { log } from 'console';
 
 interface ErrorResponse {
-    error: string;
+  error: string;
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    switch (req.method) {
-        case "POST":
-            try {
-                // Lógica para el método POST
-                return res.status(200).json({ message: 'POST request handled successfully' });
-            } catch (error: any) {
-                const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
-                return res.status(400).json(typedError);
-            }
+type ResponseData = {
+  data: string;
+ 
+};
 
-        case "GET":
-            try {
-                // Lógica para el método GET
-                return res.status(200).json({ message: 'GET request handled successfully' });
-            } catch (error: any) {
-                const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
-                return res.status(500).json(typedError);
-            }
+const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: string | undefined) => {
+  try {
+    switch (method) {
+      case 'POST':
 
-        case "PATCH":
-            try {
-                // Lógica para el método PATCH
-                return res.status(200).json({ message: 'PATCH request handled successfully' });
-            } catch (error: any) {
-                const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
-                return res.status(500).json(typedError);
-            }
+        const data = req.body
+        const response = await postManga(data);
+        return res.status(200).json(response);
+      case 'GET':
 
-        case "DELETE":
-            try {
-                // Lógica para el método DELETE
-                return res.status(200).json({ message: 'DELETE request handled successfully' });
-            } catch (error: any) {
-                const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
-                return res.status(500).json(typedError);
-            }
-
-        default:
-            return res.status(405).json({ error: 'Method Not Allowed' });
+        return res.status(200).json({ message: 'GET request handled successfully' });
+      case 'PATCH':
+        // Lógica para el método PATCH
+        return res.status(200).json({ message: 'PATCH request handled successfully' });
+      case 'DELETE':
+        // Lógica para el método DELETE
+        return res.status(200).json({ message: 'DELETE request handled successfully' });
+      default:
+        return res.status(405).json({ error: 'Method Not Allowed' });
     }
+  } catch (error: any) {
+    const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
+    return res.status(500).json(typedError);
+  }
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const { method } = req;
+    return handleRequest(req, res, method);
+    
+  } catch (error: any) {
+    const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
+    return res.status(501).json(typedError);
+  }
 }
