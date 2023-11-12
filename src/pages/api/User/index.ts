@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { postUser } from '../Controllers//User/postUser';
-
+import { allUser } from '../Controllers/User/allUser';
 
 interface ErrorResponse {
   error: string;
@@ -19,8 +19,8 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: 
         const response = await postUser(data);
         return res.status(200).json(response);
       case 'GET':
-
-        return res.status(200).json({ message: 'GET request handled successfully' });
+        const user =await allUser()
+        return res.status(200).json( user);
       case 'PATCH':
         // Lógica para el método PATCH
         return res.status(200).json({ message: 'PATCH request handled successfully' });

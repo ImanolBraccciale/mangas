@@ -1,5 +1,5 @@
-
-
+ import { prisma } from "../../libs/prisma";
+ 
 interface data {
 name:string
 email:string
@@ -10,7 +10,6 @@ rol:'USER'| 'MEMBER'| 'ADMIN'
 export const postUser=async (data: data)=>{
 try {
     
-    console.log(prisma.user);
     const createUser =await  prisma.user.create({data})
     return createUser
 

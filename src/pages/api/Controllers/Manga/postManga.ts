@@ -1,4 +1,4 @@
-
+import { prisma } from "../../libs/prisma";
 
 interface data {
     tittle: string;
