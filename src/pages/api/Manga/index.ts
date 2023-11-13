@@ -9,18 +9,12 @@ interface ErrorResponse {
   error: string;
 }
 
-type ResponseData = {
-  data: string;
-
-};
-
 const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: string | undefined) => {
   try {
     switch (method) {
       case 'POST':
-
-        const data = req.body
-        const response = await postManga(data);
+     
+        const response = await postManga(req.body);
         return res.status(200).json(response);
 
       case 'GET':
@@ -39,7 +33,7 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: 
 
       case 'PATCH':
         // Lógica para el método PATCH
-   
+        
         const resUpdate = await mangaUpdate(req)
         return res.status(200).json({ message: 'PATCH request handled successfully' });
       case 'DELETE':

@@ -41,17 +41,12 @@ model Chapter {
   ID_Chapter String @id @default(uuid())  
   Number Int
   tittle String?
-  Images Image[]
+  images String[]
   Manga Manga @relation(fields: [ID_Manga], references: [ID_Manga])
   ID_Manga String
 }
 
-model Image{
-  ID_Image String @id @default(uuid())
-  URL String
-  Chapter Chapter @relation(fields: [ID_Chapter],references: [ID_Chapter])
-  ID_Chapter String @unique
-}
+
 
 enum Status{
   ACTIVE
