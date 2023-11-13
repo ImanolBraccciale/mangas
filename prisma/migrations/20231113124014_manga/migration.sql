@@ -60,6 +60,18 @@ CREATE TABLE "_GeneresToManga" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_ID_USER_key" ON "User"("ID_USER");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_name_key" ON "User"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Manga_ID_Manga_key" ON "Manga"("ID_Manga");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Generes_name_key" ON "Generes"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Image_ID_Chapter_key" ON "Image"("ID_Chapter");
 
 -- CreateIndex

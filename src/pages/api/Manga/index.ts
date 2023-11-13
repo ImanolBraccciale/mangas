@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { postManga } from '../Controllers/Manga/postManga';
-import { log } from 'console';
-
+import { allMangas } from '../Controllers/Manga/mangas';
+import { mangaID } from '../Controllers/Manga/mangaID';
 interface ErrorResponse {
   error: string;
 }
 
 type ResponseData = {
   data: string;
- 
+
 };
 
 const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: string | undefined) => {
@@ -19,9 +19,18 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: 
         const data = req.body
         const response = await postManga(data);
         return res.status(200).json(response);
+
       case 'GET':
 
-        return res.status(200).json({ message: 'GET request handled successfully' });
+        let mangas;
+        const id = req.query.id as string
+        if (id) 
+        {
+          mangas = await mangaID(id)
+        }
+        mangas = await allMangas()
+        return res.status(200).json(mangas)
+        
       case 'PATCH':
         // Lógica para el método PATCH
         return res.status(200).json({ message: 'PATCH request handled successfully' });
@@ -41,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { method } = req;
     return handleRequest(req, res, method);
-    
+
   } catch (error: any) {
     const typedError: ErrorResponse = { error: error.message || 'Unknown error' };
     return res.status(501).json(typedError);

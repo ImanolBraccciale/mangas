@@ -1,15 +1,8 @@
 import { prisma } from "../../libs/prisma";
 
-interface FilterParams {
-    id?:string
-    name?: string;
-    email?: string;
-    role?: 'USER' | 'MEMBER' | 'ADMIN';
-  }
-
-export const allUser = async(params?:FilterParams)=>{
+export const allUser = async()=>{
     try {
-        const allUser = prisma.user.findMany({where:params})
+        const allUser = prisma.user.findMany()
         return allUser
     } catch (error:any) {
         throw new Error('Failed to search all User');

@@ -12,8 +12,8 @@ datasource db {
 
 
 model User {
-  ID_USER String @id @default(uuid())
-  name String 
+  ID_USER String @id @default(uuid()) @unique
+  name String @unique
   email String
   password String
   role Role @default(USER)
@@ -21,7 +21,7 @@ model User {
 }
 
 model Manga {
-  ID_Manga String @id @default(uuid())  
+  ID_Manga String @id @default(uuid())   @unique
   tittle String
   description String
   status Status @default(SOON)
@@ -33,7 +33,7 @@ model Manga {
 
 model Generes {
  ID_Generes String @id @default(uuid())
- name String
+ name String @unique
  manga Manga[]
 }
 

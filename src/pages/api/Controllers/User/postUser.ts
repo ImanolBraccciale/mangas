@@ -9,7 +9,6 @@ rol:'USER'| 'MEMBER'| 'ADMIN'
 
 export const postUser=async (data: data)=>{
 try {
-    
     const createUser =await  prisma.user.create({data})
     return createUser
 
