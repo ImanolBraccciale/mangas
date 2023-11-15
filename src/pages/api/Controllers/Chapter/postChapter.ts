@@ -2,7 +2,6 @@ import { prisma } from "../../libs/prisma";
 
 export const postChapter = async (data: any) => {
     const { Number, tittle, images, Manga } = data
-    console.log(Number);
     
     try {
         const newChapter = await prisma.chapter.create({data: {
@@ -14,6 +13,7 @@ export const postChapter = async (data: any) => {
                 ID_Manga: Manga
               }
             }
+ 
           }})
         return newChapter
 
