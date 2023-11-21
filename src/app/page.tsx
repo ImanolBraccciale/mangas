@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+"use client"
+
+import React  from 'react';
+ import {useAppSelector } from './hooks/hooks';
+ import Manga from './types/types';
 
 
-export default function Home() {
-  const dispatch = useDispatch();
+ const Home: React.FC =()=> {
+ 
+  const mangas = useAppSelector((state) => state.mangas.mangasAll);
+
   return (
    <main>
-   
-    {/* {.map((product) => (
-          <div key={product.id}>
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-          </div>
-        ))} */}
-
+    
+   {mangas.map((manga:Manga) => (
+        <div key={manga.id}>
+          <h3>{manga.title}</h3>
+          <p>{manga.genre}</p>
+        </div>
+      ))}
    </main>
   )
 }
+export default Home

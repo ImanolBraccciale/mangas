@@ -1,6 +1,13 @@
-import { createStore } from 'redux';
-import rootReducer from '../reducer/index';
+import { configureStore } from '@reduxjs/toolkit'
+import mangasSlice from "../features/mangas/mangasSlice"
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    mangas: mangasSlice
+  }
+})
 
-export default store;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export default store
