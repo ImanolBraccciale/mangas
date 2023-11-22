@@ -1,4 +1,4 @@
-interface Manga {
+export interface Manga {
     id: number;
     tittle: string;
     author: string;
@@ -7,5 +7,11 @@ interface Manga {
     // Otros campos relevantes para un manga
 
 }
+export interface User {
+    name: string
+    email:string
+    password:string
+    rol:string
+}
 
-export default Manga
+

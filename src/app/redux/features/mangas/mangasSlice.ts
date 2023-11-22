@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Manga from "@/app/types/types";
+import {Manga} from "@/app/types/types";
 
 interface MangasState {
     mangasAll: Manga[];

@@ -1,8 +1,9 @@
 "use client"
 import React,{useEffect} from 'react';
 import { useAppSelector,useAppDispatch } from './hooks/hooks';
-import Manga from './types/types';
 import { fetchAllMangas } from './redux/actions';
+import {Manga} from './types/types';
+import NavBar from './components/NavBar/NavBar';
 
 
 const Home: React.FC = () => {
@@ -17,12 +18,12 @@ const Home: React.FC = () => {
 
   return (
     <main>
+      <NavBar/>
       <p>asddassd</p>
       {mangas.map((manga: Manga) => (
         <div key={manga.id}>
           <h3>{manga.tittle}</h3>
-          <p>{manga.description
-}</p>
+          <p>{manga.description}</p>
         </div>
       ))}
     </main>
