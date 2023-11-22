@@ -1,24 +1,31 @@
 "use client"
+import React,{useEffect} from 'react';
+import { useAppSelector,useAppDispatch } from './hooks/hooks';
+import Manga from './types/types';
+import { fetchAllMangas } from './redux/actions';
 
-import React  from 'react';
- import {useAppSelector } from './hooks/hooks';
- import Manga from './types/types';
 
-
- const Home: React.FC =()=> {
+const Home: React.FC = () => {
  
+  const dispatch = useAppDispatch();
   const mangas = useAppSelector((state) => state.mangas.mangasAll);
+  console.log(mangas);
+  
+  useEffect(()=>{
+    dispatch(fetchAllMangas())
+  },[dispatch])
 
   return (
-   <main>
-    
-   {mangas.map((manga:Manga) => (
+    <main>
+      <p>asddassd</p>
+      {mangas.map((manga: Manga) => (
         <div key={manga.id}>
-          <h3>{manga.title}</h3>
-          <p>{manga.genre}</p>
+          <h3>{manga.tittle}</h3>
+          <p>{manga.description
+}</p>
         </div>
       ))}
-   </main>
+    </main>
   )
 }
 export default Home

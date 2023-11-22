@@ -1,6 +1,6 @@
 interface Manga {
     id: number;
-    title: string;
+    tittle: string;
     author: string;
     genre: string;
     description: string;
