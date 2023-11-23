@@ -4,7 +4,7 @@ interface data {
 name:string
 email:string
 password:string
-rol:'USER'| 'MEMBER'| 'ADMIN'
+role:'USER'| 'MEMBER'| 'ADMIN'
 }
 
 export const postUser=async (data: data)=>{

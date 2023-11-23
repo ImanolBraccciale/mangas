@@ -7,11 +7,18 @@ export interface Manga {
     // Otros campos relevantes para un manga
 
 }
+
 export interface User {
+    ID_USER:string
     name: string
     email:string
     password:string
-    rol:string
+    role?: Role;
 }
 
-
+enum Role {
+    USER = "USER",
+    ADMIN = "ADMIN",
+    MODERATOR = "MODERATOR",
+  }
+  

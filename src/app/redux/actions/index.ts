@@ -1,7 +1,8 @@
 "use client"
 import axios from "axios";
 import { addManga, setAllMangas,setMangasID,setMangasName } from "../features/mangas/mangasSlice";
-import { Manga } from "@prisma/client";
+import { addUser } from "../features/user/userSlice";
+import { Manga,User } from "@prisma/client";
 
 export const fetchAllMangas = () => {
     return async function (dispatch: any) {
@@ -49,3 +50,15 @@ export const postMangas = (manga:Manga) => {
     }
 }
 
+export const postUser = (newUser:User) => {
+    return async function (dispatch: any) {
+        try {
+            console.log(newUser,"aaaa");
+            
+            const response = await axios.post("/api/User",newUser)
+            return dispatch(addUser(response.data))
+        } catch (error) {
+            throw new Error('Failed to search postMangas in client');
+        }
+    }
+}

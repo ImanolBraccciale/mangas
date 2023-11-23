@@ -10,6 +10,9 @@ const NavBar: React.FC = () => {
                     <li>
                         <Link href="/Library">Biblioteca</Link>
                     </li>
+                    <li>
+                        <Link href="/User">Registrarse</Link>
+                    </li>
                 </ul>
             </nav>
         </section>
