@@ -14,8 +14,9 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: 
   try {
     switch (method) {
       case 'POST':
-
+        
         const data = req.body
+        console.log("dasdasd");
         const response = await postUser(data);
         return res.status(200).json(response);
       case 'GET':

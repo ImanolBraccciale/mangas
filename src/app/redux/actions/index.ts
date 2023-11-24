@@ -58,7 +58,7 @@ export const postUser = (newUser:User) => {
             const response = await axios.post("/api/User",newUser)
             return dispatch(addUser(response.data))
         } catch (error) {
-            throw new Error('Failed to search postMangas in client');
+            throw new Error('Failed to search POSTUSER in client');
         }
     }
 }

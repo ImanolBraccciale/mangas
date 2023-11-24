@@ -1,38 +1,84 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import { useAppDispatch } from "../hooks/hooks";
 import { postUser } from "../redux/actions";
 import { Role } from "@prisma/client";
+import { userSchema } from "../components/validation/validation";
+import { useUserState } from "../hooks/hooks";
+
 
 const User: React.FC = () => {
-    const dispatch = useAppDispatch()
-    const [userName, setUserName] = useState("")
-    const [userEmail, setUserEmail] = useState("")
-    const [userPassword, setUserPassword] = useState("")
+    const dispatch = useAppDispatch();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("asdasd");
-        event.preventDefault()
-        
-        const newUser = {
-            ID_USER:"",
-            name: userName,
-            email: userEmail,
-            password: userPassword,
-            role:Role.USER
-           
+    const {
+        userName,
+        setUserName,
+        userEmail,
+        setUserEmail,
+        userPassword,
+        setUserPassword,
+        emailError,
+        setEmailError,
+        passwordError,
+        setPasswordError,
+    } = useUserState();
+
+
+
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        try {
+         
+            console.log(userEmail);
+            console.log(userPassword);
+
+            await userSchema.validate({
+                name: userName,
+                email: userEmail,
+                password: userPassword,
+            }, { abortEarly: false });
+ 
+            
+            const newUser = {
+                ID_USER: "",
+                name: userName,
+                email: userEmail,
+                password: userPassword,
+                role: Role.USER,
+            };
+       
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+            dispatch(postUser(newUser));
+
+    
+            setUserName("");
+            setUserEmail("");
+            setUserPassword("");
+            setEmailError("");
+            setPasswordError("");
+
+        } catch (error: any) {
+ 
+            
+            if (error.name === "ValidationError") {
+                error.inner.forEach((validationError: any) => {
+                    const { path, message } = validationError;
+                    if (path === "email") {
+                        setEmailError(message);
+                    } else if (path === "password") {
+                        setPasswordError(message);
+                    }
+                })
+            }
         }
-        
-        dispatch(postUser(newUser))
 
-        setUserName('');
-        setUserEmail('');
-        setUserPassword('');
-    }
+    };
 
     return (
-        <section onSubmit={handleSubmit}>
-            <form>
+        <section>
+            <form onSubmit={handleSubmit}>
                 <label>Nombre</label>
                 <input
                     value={userName}
@@ -40,26 +86,29 @@ const User: React.FC = () => {
                     type="text"
                     onChange={(event) => setUserName(event.target.value)}
                 />
-                <label>correo</label>
+
+                <label>Correo</label>
                 <input
                     value={userEmail}
-                    placeholder="correo..."
+                    placeholder="Correo..."
                     type="text"
                     onChange={(event) => setUserEmail(event.target.value)}
                 />
-                <label>Contraeña</label>
+                {emailError && <span>{emailError}</span>}
+
+                <label>Contraseña</label>
                 <input
                     value={userPassword}
-                    placeholder="Contraeña..."
-                    type="text"
+                    placeholder="Contraseña..."
+                    type="password"
                     onChange={(event) => setUserPassword(event.target.value)}
                 />
+                {passwordError && <span>{passwordError}</span>}
+
                 <button type="submit">Enviar</button>
             </form>
         </section>
-    )
-}
+    );
+};
 
-export default User
-
-
+export default User;

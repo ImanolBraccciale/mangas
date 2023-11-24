@@ -9,7 +9,6 @@ export interface Manga {
 }
 
 export interface User {
-    ID_USER:string
     name: string
     email:string
     password:string
