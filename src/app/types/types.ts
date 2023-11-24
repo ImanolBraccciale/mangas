@@ -1,3 +1,5 @@
+import { Role } from "@prisma/client";
+
 export interface Manga {
     id: number;
     tittle: string;
@@ -9,15 +11,11 @@ export interface Manga {
 }
 
 export interface User {
+   
     name: string
     email:string
     password:string
-    role?: Role;
+    role: Role;
 }
 
-enum Role {
-    USER = "USER",
-    ADMIN = "ADMIN",
-    MODERATOR = "MODERATOR",
-  }
-  
+ 

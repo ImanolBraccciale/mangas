@@ -23,9 +23,6 @@ const User: React.FC = () => {
         setPasswordError,
     } = useUserState();
 
-
-
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
@@ -41,11 +38,10 @@ const User: React.FC = () => {
  
             
             const newUser = {
-                ID_USER: "",
                 name: userName,
                 email: userEmail,
                 password: userPassword,
-                role: Role.USER,
+                role:Role.USER,
             };
        
             console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");

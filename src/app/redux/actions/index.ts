@@ -2,7 +2,7 @@
 import axios from "axios";
 import { addManga, setAllMangas,setMangasID,setMangasName } from "../features/mangas/mangasSlice";
 import { addUser } from "../features/user/userSlice";
-import { Manga,User } from "@prisma/client";
+import { Manga,User } from "@/app/types/types";
 
 export const fetchAllMangas = () => {
     return async function (dispatch: any) {
@@ -53,8 +53,6 @@ export const postMangas = (manga:Manga) => {
 export const postUser = (newUser:User) => {
     return async function (dispatch: any) {
         try {
-            console.log(newUser,"aaaa");
-            
             const response = await axios.post("/api/User",newUser)
             return dispatch(addUser(response.data))
         } catch (error) {
