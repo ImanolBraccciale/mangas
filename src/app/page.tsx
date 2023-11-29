@@ -21,7 +21,7 @@ const Home: React.FC = () => {
       <NavBar/>
       <p>asddassd</p>
       {mangas.map((manga: Manga) => (
-        <div key={manga.id}>
+        <div key={manga.tittle}>
           <h3>{manga.tittle}</h3>
           <p>{manga.description}</p>
         </div>
