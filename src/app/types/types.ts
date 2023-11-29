@@ -1,12 +1,11 @@
 import { Role } from "@prisma/client";
+import { Status } from "@prisma/client";
 
 export interface Manga {
-    id: number;
     tittle: string;
     author: string;
-    genre: string;
     description: string;
-    // Otros campos relevantes para un manga
+   status:Status
 
 }
 
@@ -19,3 +18,7 @@ export interface User {
 }
 
  
+export interface Generes {
+    name:string
+    ID_Generes:string
+}

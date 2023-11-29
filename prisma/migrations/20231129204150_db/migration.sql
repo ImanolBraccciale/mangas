@@ -39,18 +39,10 @@ CREATE TABLE "Chapter" (
     "ID_Chapter" TEXT NOT NULL,
     "Number" INTEGER NOT NULL,
     "tittle" TEXT,
+    "images" TEXT[],
     "ID_Manga" TEXT NOT NULL,
 
     CONSTRAINT "Chapter_pkey" PRIMARY KEY ("ID_Chapter")
-);
-
--- CreateTable
-CREATE TABLE "Image" (
-    "ID_Image" TEXT NOT NULL,
-    "URL" TEXT NOT NULL,
-    "ID_Chapter" TEXT NOT NULL,
-
-    CONSTRAINT "Image_pkey" PRIMARY KEY ("ID_Image")
 );
 
 -- CreateTable
@@ -72,9 +64,6 @@ CREATE UNIQUE INDEX "Manga_ID_Manga_key" ON "Manga"("ID_Manga");
 CREATE UNIQUE INDEX "Generes_name_key" ON "Generes"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Image_ID_Chapter_key" ON "Image"("ID_Chapter");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_GeneresToManga_AB_unique" ON "_GeneresToManga"("A", "B");
 
 -- CreateIndex
@@ -85,9 +74,6 @@ ALTER TABLE "Manga" ADD CONSTRAINT "Manga_ID_USER_fkey" FOREIGN KEY ("ID_USER") 
 
 -- AddForeignKey
 ALTER TABLE "Chapter" ADD CONSTRAINT "Chapter_ID_Manga_fkey" FOREIGN KEY ("ID_Manga") REFERENCES "Manga"("ID_Manga") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_ID_Chapter_fkey" FOREIGN KEY ("ID_Chapter") REFERENCES "Chapter"("ID_Chapter") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_GeneresToManga" ADD CONSTRAINT "_GeneresToManga_A_fkey" FOREIGN KEY ("A") REFERENCES "Generes"("ID_Generes") ON DELETE CASCADE ON UPDATE CASCADE;

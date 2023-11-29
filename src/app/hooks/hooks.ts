@@ -28,3 +28,17 @@ export const useUserState = () => {
     setErrorMessages
   };
 };
+
+export const postMangaState = ()=>{
+  const [tittle, setTittle] =useState("")
+  const [description, setDescription] =useState("")
+  const [allSelectedGeneres,setAllSelectedGeneres]= useState<string[]>([])
+  return {
+    tittle,
+    setTittle,
+    description,
+    setDescription,
+    allSelectedGeneres,
+    setAllSelectedGeneres
+  }
+}

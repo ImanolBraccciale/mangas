@@ -3,6 +3,7 @@ import axios from "axios";
 import { addManga, setAllMangas,setMangasID,setMangasName } from "../features/mangas/mangasSlice";
 import { addUser } from "../features/user/userSlice";
 import { Manga,User } from "@/app/types/types";
+import { setAllGenenes } from "../features/generes/generesSlice";
 
 export const fetchAllMangas = () => {
     return async function (dispatch: any) {
@@ -57,6 +58,17 @@ export const postUser = (newUser:User) => {
             return dispatch(addUser(response.data))
         } catch (error) {
             throw new Error('Failed to search POSTUSER in client');
+        }
+    }
+}
+
+export const allGeneres = ()=>{
+    return async function (dispatch:any) {
+        try {
+            const response = await axios.get("/api/Generes")
+            return dispatch(setAllGenenes(response.data))
+        } catch (error) {
+            throw new Error("failed to seatch allGeneres in client")
         }
     }
 }

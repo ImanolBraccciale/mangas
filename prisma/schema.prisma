@@ -28,13 +28,13 @@ model Manga {
   chapters Chapter[]
   creator User @relation(fields: [ID_USER],references: [ID_USER])
   ID_USER String
-  geres Generes[]
+    generes     Generes[]
 }
 
 model Generes {
  ID_Generes String @id @default(uuid())
  name String @unique
- manga Manga[]
+  mangas Manga[]
 }
 
 model Chapter {
@@ -45,8 +45,6 @@ model Chapter {
   Manga Manga @relation(fields: [ID_Manga], references: [ID_Manga])
   ID_Manga String
 }
-
-
 
 enum Status{
   ACTIVE
