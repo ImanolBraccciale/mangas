@@ -5,6 +5,7 @@ export const messages= {
         incorrectPassword:"La contraseña es incorrecta"
     },
     succes:{
-        postUser: "Usuario creado correctamente"
+        postUser: "Usuario creado correctamente",
+        login:"Es un placer verte de Nuevo"
     }
 }
