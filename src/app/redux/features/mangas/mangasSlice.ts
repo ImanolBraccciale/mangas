@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {Manga} from "@/app/types/types";
+import { Manga, postManga} from "@/app/types/types";
 
 interface MangasState {
     mangasAll: Manga[];
     mangaID: string | null;
     mangaName: string;
+    newManga:postManga[]
 }
 
 const initialState: MangasState = {
     mangasAll: [],
     mangaID: null,
     mangaName: "",
+    newManga:[]
 };
 
 export const mangasSlice = createSlice({
@@ -26,8 +28,8 @@ export const mangasSlice = createSlice({
         setMangasName: (state, action: PayloadAction<string>) => {
             state.mangaName = action.payload;
         },
-        addManga: (state,action: PayloadAction<Manga>)=>{
-            state.mangasAll.push(action.payload)
+        addManga: (state,action: PayloadAction<postManga>)=>{
+            state.newManga.push(action.payload)
         }
     }
 })

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { postUser } from '../Controllers//User/postUser';
 import { allUser } from '../Controllers/User/allUser';
+import { login } from '../Controllers/User/login';
 
 interface ErrorResponse {
   error: string;
@@ -11,16 +12,22 @@ type ResponseData = {
 };
 
 const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: string | undefined) => {
+  let response;
   try {
     switch (method) {
       case 'POST':
-        
         const data = req.body
-        const response = await postUser(data);
+         
+         if (!data.confirmPassword) {
+          response = await login(data,res)
+         }else{
+          response = await postUser(data,res);
+         }
+     
         return res.status(200).json(response);
       case 'GET':
-        const user =await allUser()
-        return res.status(200).json( user);
+          response =await allUser()
+        return res.status(200).json( response);
       case 'PATCH':
         // Lógica para el método PATCH
         return res.status(200).json({ message: 'PATCH request handled successfully' });

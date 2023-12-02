@@ -24,7 +24,7 @@ const formManga: React.FC = () => {
             tittle: tittle,
             description: description,
             status: Status.SOON,
-            ID_Generes: ["d8b73abb-d015-4e72-8d1d-4221f9601962"],
+            ID_Generes: allSelectedGeneres,
             author: "sasd",
             ID_USER: "f9965d9d-f31d-4823-89c5-747c63364f05"
         }

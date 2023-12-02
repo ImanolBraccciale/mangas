@@ -5,10 +5,17 @@ export interface Manga {
     tittle: string;
     author: string;
     description: string;
+    generes: string[]
    status:Status
-
+   ID_Manga:string
 }
-
+export interface postManga {
+    tittle: string;
+    author: string;
+    description: string;
+   status:Status
+ 
+}
 export interface User {
    
     name: string
