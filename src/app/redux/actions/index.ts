@@ -2,7 +2,7 @@
 import axios from "axios";
 import { addManga, setAllMangas,setMangasID,setMangasName } from "../features/mangas/mangasSlice";
 import { addUser } from "../features/user/userSlice";
-import { Manga,User, postManga } from "@/app/types/types";
+import { Manga,User } from "@/app/types/types";
 import { setAllGenenes } from "../features/generes/generesSlice";
 
 export const fetchAllMangas = () => {
@@ -40,7 +40,7 @@ export const fetchMangasName = (name: string) => {
     }
 }
 
-export const postMangas = (manga:postManga) => {
+export const postMangas = (manga:Manga) => {
     return async function (dispatch: any) {
         try {
             const response = await axios.post("/api/Manga",manga)

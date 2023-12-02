@@ -14,7 +14,7 @@ datasource db {
 model User {
   ID_USER String @id @default(uuid()) @unique
   name String @unique
-  email String @unique
+  email String
   password String
   role Role @default(USER)
   manga Manga[]

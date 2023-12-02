@@ -16,9 +16,6 @@ const NavBar: React.FC = () => {
                     <li>
                         <Link href="/formManga">Crear Manga</Link>
                     </li>
-                    <li>
-                        <Link href="/login">Login</Link>
-                    </li>
                 </ul>
             </nav>
         </section>
