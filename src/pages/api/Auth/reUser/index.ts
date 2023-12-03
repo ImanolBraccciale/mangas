@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { postUser } from '../Controllers//User/postUser';
-import { allUser } from '../Controllers/User/allUser';
-import { login } from '../Controllers/User/login';
+import { forgetPassword } from '../../Controllers/reUser/forgetPassword';
  
-
 interface ErrorResponse {
   error: string;
 }
@@ -18,23 +15,10 @@ const handleRequest = async (req: NextApiRequest, res: NextApiResponse, method: 
     switch (method) {
       case 'POST':
         const data = req.body
-         
-         if (!data.confirmPassword) {
-          response = await login(data,res)
-         }else{
-          response = await postUser(data,res);
-         }
-     
-        return res.status(200).json(response);
-      case 'GET':
-          response =await allUser()
-        return res.status(200).json( response);
-      case 'PATCH':
-        // Lógica para el método PATCH
-        return res.status(200).json({ message: 'PATCH request handled successfully' });
-      case 'DELETE':
-        // Lógica para el método DELETE
-        return res.status(200).json({ message: 'DELETE request handled successfully' });
+        
+        response = await forgetPassword(data,res)
+        return res.status(200).json(response)
+  
       default:
         return res.status(405).json({ error: 'Method Not Allowed' });
     }

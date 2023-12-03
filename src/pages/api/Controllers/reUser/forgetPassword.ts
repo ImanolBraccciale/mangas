@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { Resend } from 'resend';
 
 
-const resend = new Resend(process.env.NODE_ENV);
+const resend = new Resend(process.env.RESEND);
 
 
 export const forgetPassword = async (data: any, res: NextApiResponse) => {
@@ -24,13 +24,17 @@ export const forgetPassword = async (data: any, res: NextApiResponse) => {
     const token = jwt.sign({ user: TokenData }, process.env.JWT_SECRET, {
         expiresIn: '1d',
     });
-
-    const forgetURL= `http://localhost:3000/api/reUser?token=${token}`
-
+  
+    const forgetURL= `http://localhost:3000/changePassword?token=${token}`
+    console.log(token);
+    
     resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: data.email,
+        to: userFind.email,
         subject: 'cambio de contraseña',
         html: `<a href=${forgetURL}>cambiar contraseña</a>`
       });
+    return res.json({
+        messages:messages.succes.resendSuccess
+    })
 }
