@@ -26,8 +26,7 @@ export const forgetPassword = async (data: any, res: NextApiResponse) => {
     });
   
     const forgetURL= `http://localhost:3000/changePassword?token=${token}`
-    console.log(token);
-    
+   
     resend.emails.send({
         from: 'onboarding@resend.dev',
         to: userFind.email,

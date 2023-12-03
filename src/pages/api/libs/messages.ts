@@ -4,12 +4,14 @@ export const messages= {
         verifyEmail:"El correo ya existe",
         incorrectPassword:"La contraseña es incorrecta",
         passwordEmpty:"Falta completar un campo",
-        notAutorished:"no autorizado"
+        notAutorished:"no autorizado",
+        userNotFounded:" Usuario no encontrado"
     },
     succes:{
         postUser: "Usuario creado correctamente",
         login:"Es un placer verte de Nuevo",
         resendSuccess:"Email enviado correctamente",
-        chagePassword:"Contraseña cambiada correctamente"
+        chagePassword:"Contraseña cambiada correctamente",
+        Authorized:"Usuario encontrado"
     }
 }

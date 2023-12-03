@@ -26,8 +26,6 @@ export const changePassword = async (req: NextApiRequest, res: NextApiResponse) 
     try {
         const isTokenValue= jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
         const userEmail = isTokenValue.user.email;
-        console.log(isTokenValue);
-  
 
         const userFind = await prisma.user.findUnique({
             where: { email: userEmail },
