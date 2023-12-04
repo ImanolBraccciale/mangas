@@ -11,9 +11,10 @@ export interface Manga {
 
 export interface User {
    
-    name: string
+    name?: string
     email:string
     password:string
+    confirmPassword?:string
     role: Role;
 }
 

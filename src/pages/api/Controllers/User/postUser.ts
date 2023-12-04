@@ -13,6 +13,8 @@ interface Data {
 
 export const postUser = async (data: Data, res: NextApiResponse) => {
   try {
+    console.log("esyou eb postyser");
+    
     const { password } = data;
 
     const userFind = await prisma.user.findUnique({
