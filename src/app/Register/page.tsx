@@ -19,7 +19,6 @@ const Register = () => {
           confirmPassword:formData.userConfirmPassword,
           role: Role.USER,
         };
-        console.log(newUser);
         dispatch(postUser(newUser));
       
  

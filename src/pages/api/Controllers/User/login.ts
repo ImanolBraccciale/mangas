@@ -3,7 +3,7 @@ import { prisma } from "../../libs/prisma";
 import { messages } from "../../libs/messages";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import { NextResponse } from "next/server";
+
 
 export const login = async (data: any, res: NextApiResponse) => {
   try {
@@ -24,10 +24,10 @@ export const login = async (data: any, res: NextApiResponse) => {
       userFind.password
     )
     if (!isCorrect) {
-      return NextResponse.json(
-        { message: messages.error.incorrectPassword },
-        { status: 400 }
-      );
+     
+      return res.json({ message: messages.error.incorrectPassword })
+
+
     }
 
     const { password: _unused, ...userWithoutPassword } = userFind;

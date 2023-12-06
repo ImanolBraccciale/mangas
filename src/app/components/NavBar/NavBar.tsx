@@ -19,6 +19,9 @@ const NavBar: React.FC = () => {
                     <li>
                         <Link href="/Login">Login</Link>
                     </li>
+                    <li>
+                        <Link href="/ForgetPassword">Contraseña olvidada</Link>
+                    </li>
                 </ul>
             </nav>
         </section>

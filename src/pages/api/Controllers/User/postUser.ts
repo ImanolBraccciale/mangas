@@ -13,7 +13,7 @@ interface Data {
 
 export const postUser = async (data: Data, res: NextApiResponse) => {
   try {
-    console.log("esyou eb postyser");
+
     
     const { password } = data;
 
@@ -28,6 +28,7 @@ export const postUser = async (data: Data, res: NextApiResponse) => {
         throw new Error('JWT secret is not defined');
       }
     const hashedPassword = await bcrypt.hash(password, 10);
+  
     const newUser = {
       name: data.name,
       email: data.email,

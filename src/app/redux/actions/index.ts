@@ -8,9 +8,9 @@ import { setAllGenenes } from "../features/generes/generesSlice";
 export const fetchAllMangas = () => {
     return async function (dispatch: any) {
         try {
-            console.log("!aaaa");
+ 
             const response = await axios.get("/api/Manga")
-            console.log(response,"aa");
+   
             return dispatch(setAllMangas(response.data))
         } catch (error) {
             throw new Error('Failed to search allMangas in client');
@@ -54,8 +54,7 @@ export const postMangas = (manga:Manga) => {
 export const postUser = (newUser:User) => {
     return async function (dispatch: any) {
         try {
-            console.log();
-            
+
             const response = await axios.post("/api/Auth/User",newUser)
             return dispatch(addUser(response.data))
         } catch (error) {
@@ -63,6 +62,36 @@ export const postUser = (newUser:User) => {
         }
     }
 }
+export const forgetPassword = (newUser:any) => {
+    return async function (dispatch: any) {
+        try {
+            const response = await axios.post("/api/Auth/reUser",newUser)
+            return dispatch(addUser(response.data))
+        } catch (error) {
+            throw new Error('Failed to search forgetPassword in client');
+        }
+    }
+}
+export const changePassword = (newUser: any, token: any) => {
+    return async function (dispatch: any) {
+      try {
+        
+        const response = await axios.post(
+          "/api/Auth/changePassword",
+          newUser,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        return dispatch(addUser(response.data));
+      } catch (error) {
+        throw new Error("Failed to change password in client");
+      }
+    };
+  };
+
 
 export const allGeneres = ()=>{
     return async function (dispatch:any) {

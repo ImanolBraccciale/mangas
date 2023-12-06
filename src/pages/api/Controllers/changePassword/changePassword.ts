@@ -8,16 +8,15 @@ export const changePassword = async (req: NextApiRequest, res: NextApiResponse) 
     const { password, confirmPassword } = req.body;
     try {
         
-    
-    if (!password || !confirmPassword) {
-        return res.status(400).json({ error: messages.error.passwordEmpty });
-    }
-
-    const token = req.headers.token as string;
-
-    if (!token) {
-        return res.status(401).json({ error: messages.error.notAutorished });
-    }
+        
+        if (!password || !confirmPassword) {
+            return res.status(400).json({ error: messages.error.passwordEmpty });
+        }
+        
+        const token = req.headers.token as string;
+        if (!token) {
+            return res.status(401).json({ error: messages.error.notAutorished });
+        }
 
     if (!process.env.JWT_SECRET) {
         throw new Error("JWT secret is not defined");

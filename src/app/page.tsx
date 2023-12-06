@@ -10,7 +10,7 @@ const Home: React.FC = () => {
  
   const dispatch = useAppDispatch();
   const mangas = useAppSelector((state) => state.mangas.mangasAll);
-  console.log(mangas);
+
   
   useEffect(()=>{
     dispatch(fetchAllMangas())
