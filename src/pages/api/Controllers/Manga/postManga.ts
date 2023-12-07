@@ -11,7 +11,8 @@ interface data {
 export const postManga = async (data: data) => {
   try {
     const { tittle, description, status, ID_USER, ID_Generes } = data;
-
+    
+    
     const mangaCreated = await prisma?.manga.create({
       data: {
         tittle: tittle,

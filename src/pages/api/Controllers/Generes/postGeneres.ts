@@ -6,7 +6,7 @@ export const postGeneres = async (data: any) => {
         const generes = prisma.generes.create({ data
         })
     
-        
+        return generes
 
     } catch (error) {
         throw new Error(`Failed to create generes ${error}`);

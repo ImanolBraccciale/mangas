@@ -1,3 +1,4 @@
+"use client"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {Manga} from "@/app/types/types";
 
@@ -9,7 +10,7 @@ interface MangasState {
 
 const initialState: MangasState = {
     mangasAll: [],
-    mangaID: null,
+    mangaID: "",
     mangaName: "",
 };
 
@@ -17,11 +18,13 @@ export const mangasSlice = createSlice({
     name: "mangas",
     initialState,
     reducers: {
+        
         setAllMangas: (state, action: PayloadAction<Manga[]>) => {
             state.mangasAll = action.payload;
         },
         setMangasID: (state, action: PayloadAction<string>) => {
             state.mangaID = action.payload;
+            console.log(state.mangaID);
         },
         setMangasName: (state, action: PayloadAction<string>) => {
             state.mangaName = action.payload;

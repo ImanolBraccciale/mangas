@@ -11,8 +11,7 @@ export const Check = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const isTokenValue = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
         const userID = isTokenValue.user.ID_USER;
-        console.log(userID);
-        
+    
         const userFind = await prisma.user.findUnique({
             where: { ID_USER: userID },
         });

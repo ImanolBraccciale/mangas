@@ -18,10 +18,12 @@ export const fetchAllMangas = () => {
     }
 }
 
-export const fetchMangasID = () => {
+export const fetchMangasID = (id:string) => {
     return async function (dispatch: any) {
         try {
-            const response = await axios.get("/api/Manga")
+ 
+            const response = await axios.get(`/api/Manga?id=${id}`)
+ 
             return dispatch(setMangasID(response.data))
         } catch (error) {
             throw new Error('Failed to search mangasID in client');
